@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GetContentApiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/content', [GetContentApiController::class, 'getAllCharacters']);
+Route::get('/content/{name}/', [GetContentApiController::class, 'singleCharacter']);
+Route::get('/comics', [GetContentApiController::class, 'getAllComics']);
+Route::get('/comics/{name}/', [GetContentApiController::class, 'singleComic']);
