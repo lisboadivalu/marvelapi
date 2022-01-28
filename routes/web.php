@@ -14,11 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/home', function(){
+    return view('home');
 });
 
-Route::get('/content', [GetContentApiController::class, 'getAllCharacters']);
-Route::get('/content/{name}/', [GetContentApiController::class, 'singleCharacter']);
+Route::get('/', [GetContentApiController::class, 'getAllCharacters']);
+Route::get('/search', [GetContentApiController::class, 'singleCharacter'])->name('search')->where('name', '[A-Za-z]+');
 Route::get('/comics', [GetContentApiController::class, 'getAllComics']);
 Route::get('/comics/{name}/', [GetContentApiController::class, 'singleComic']);

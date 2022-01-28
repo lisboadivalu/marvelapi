@@ -23,12 +23,15 @@ class GetContentApiController extends Controller
         return response()->json($response);
     }
 
-    public function singleCharacter($name){
+    public function singleCharacter(){
+
+        $name = $_GET['search'];
         $url = 'v1/public/characters?name='.$name.'&';
         $response = $this->connApi($url);
 
         try {
-            return response()->json($response);
+            $response = response()->json($response);
+            return view('search', compact('response'));
             if(!$response){
                 throw new Exception('Not found! Verify the correct name of charecter');
             }
@@ -57,5 +60,4 @@ class GetContentApiController extends Controller
                 return 'Failed: ' . $e->getMessage();
         }
     }
-
 }
